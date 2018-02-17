@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.joselbe.domain.interactor.ErrorCompletion
 import com.joselbe.domain.interactor.SuccessCompletion
+import com.joselbe.domain.interactor.TypeObjects
 import com.joselbe.domain.interactor.getallshops.GetAllShopsInteractor
 import com.joselbe.domain.interactor.getallshops.GetAllShopsInteractorImpl
 import com.joselbe.domain.model.Shop
@@ -41,12 +42,20 @@ class ShopsActivity : AppCompatActivity(), ListFragment.OnShopSelectedListener {
 
     var listFragmentos : ListFragment? = null
 
-    lateinit var viewSwitcher : ViewSwitcher
+    private lateinit var viewSwitcher : ViewSwitcher
+    var typeData : Int? = 0 //esto es shops or events
+
+    companion object {
+        val PUT_EXTRA_DATA_TYPE  = "PUT_EXTRA_DATA_TYPE"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shops)
         setSupportActionBar(toolbar)
+
+        //get the Data Type (shops or Events)
+        typeData = intent.getSerializableExtra(ShopsActivity.PUT_EXTRA_DATA_TYPE) as Int
 
         viewSwitcher = viewSwitcher1
         viewSwitcher.displayedChild = 0
@@ -74,7 +83,7 @@ class ShopsActivity : AppCompatActivity(), ListFragment.OnShopSelectedListener {
     private fun setupMap(context: Context) {
 
         val getAllShopsInteractor : GetAllShopsInteractor = GetAllShopsInteractorImpl(this)
-        getAllShopsInteractor.execute(object: SuccessCompletion<Shops>{
+        getAllShopsInteractor.execute(typeData!! , object: SuccessCompletion<Shops>{
             override fun successCompletion(shops: Shops) {
                 initializeMap(shops)
 

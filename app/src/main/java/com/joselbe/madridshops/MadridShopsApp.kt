@@ -22,30 +22,6 @@ class MadridShopsApp : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        // código de inicialización de todo el App.
-        Log.d("Shops", "OnCreate")
-
-
-
-        //pedimos todas las tiendas
-
-        val allShopsIntercatr = GetAllShopsInteractorImpl(this)
-
-        allShopsIntercatr.execute( object : SuccessCompletion<Shops>{
-            override fun successCompletion(a: Shops) {
-                a.shops.forEach {
-                    Log.d("Shops", it.name)
-                }
-            }
-
-        }, object: ErrorCompletion{
-            override fun errorCompletion(errorMessage: String) {
-                Log.d("Shops", errorMessage)
-            }
-        })
-
-
-
 
     }
 

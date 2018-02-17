@@ -3,6 +3,7 @@ package com.joselbe.domain.interactor.getallshops
 import android.content.Context
 import com.joselbe.domain.interactor.ErrorCompletion
 import com.joselbe.domain.interactor.SuccessCompletion
+import com.joselbe.domain.interactor.TypeObjects
 import com.joselbe.domain.model.Shop
 import com.joselbe.domain.model.Shops
 import com.joselbe.repository.Repository
@@ -12,17 +13,32 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 class GetAllShopsInteractorImpl (context : Context) : GetAllShopsInteractor {
+
     private val weakContext = WeakReference<Context>(context)
     private val repository: Repository = RepositoryImpl(weakContext.get()!!)
 
-    override fun execute(success: SuccessCompletion<Shops>, error: ErrorCompletion) {
-        repository.getAllShops(success = {
-            //it = ShopEntity. Hay que mapear shopentoty -> Shops
-            val shops: Shops = EntityMapper(it)
-            success.successCompletion(shops) //ok.
-        }, error = {
-            error(it)
-        })
+    override fun execute(type: Int, success: SuccessCompletion<Shops>, error: ErrorCompletion) {
+
+        if (type == TypeObjects.SHOPS) {
+            //shops
+            repository.getAllShops(type, success = {
+                //it = ShopEntity. Hay que mapear shopentoty -> Shops
+                val shops: Shops = EntityMapper(it)
+                success.successCompletion(shops) //ok.
+            }, error = {
+                error(it)
+            })
+        }
+        else{
+            //events
+            repository.getAllShops(type, success = {
+                //it = ShopEntity. Hay que mapear shopentoty -> Shops
+                val shops: Shops = EntityMapper(it)
+                success.successCompletion(shops) //ok.
+            }, error = {
+                error(it)
+            })
+        }
     }
 
     //mapping

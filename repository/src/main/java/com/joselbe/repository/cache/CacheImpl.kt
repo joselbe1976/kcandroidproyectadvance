@@ -12,9 +12,9 @@ import java.lang.ref.WeakReference
 class CacheImpl( context : Context) : Cache {
     val context = WeakReference<Context>(context)
 
-    override fun getAllShops(success: (shops: List<ShopEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
+    override fun getAllShops(type : Int ,success: (shops: List<ShopEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
         Thread(Runnable {
-            var shops =  ShopDAO(cacheDBHelper()).query()
+            var shops =  ShopDAO(type, cacheDBHelper()).query()
 
             //lanzamos por el Hilo principal
             DispatchOnMainThread(Runnable{
@@ -28,10 +28,10 @@ class CacheImpl( context : Context) : Cache {
 
     }
 
-    override fun saveAllShops(shops: List<ShopEntity>, success: () -> Unit, error: (errorMessage: String) -> Unit) {
+    override fun saveAllShops(type : Int , shops: List<ShopEntity>, success: () -> Unit, error: (errorMessage: String) -> Unit) {
         Thread(Runnable {
             try {
-                shops.forEach { ShopDAO(cacheDBHelper()).insert(it) }
+                shops.forEach { ShopDAO(type, cacheDBHelper()).insert(it) }
 
                 DispatchOnMainThread(Runnable{
                     success()
@@ -48,10 +48,10 @@ class CacheImpl( context : Context) : Cache {
 
 
 
-    override fun deleteAllShops(success: () -> Unit, error: (errorMessage: String) -> Unit) {
+    override fun deleteAllShops(type : Int , success: () -> Unit, error: (errorMessage: String) -> Unit) {
 
         Thread(Runnable {
-            var successDeleting =  ShopDAO(cacheDBHelper()).deleteAll()
+            var successDeleting =  ShopDAO(type, cacheDBHelper()).deleteAll()  //no eliminamos por tipo, porque no nos interesa, pero podemos
                 //lanzamos por el Hilo principal
                 DispatchOnMainThread(Runnable{
                     if (successDeleting) {

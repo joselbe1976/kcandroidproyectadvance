@@ -14,24 +14,37 @@ class RepositoryImpl(context: Context) : Repository{
     private val weakContext = WeakReference<Context>(context)
     private val cache : Cache = CacheImpl(weakContext.get()!!)
 
-    override fun getAllShops(success: (shops: List<ShopEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
+    override fun getAllShops(type : Int , success: (shops: List<ShopEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
 
         //read All Shops from Cache
-        cache.getAllShops(success = {
+        cache.getAllShops(type, success = {
             //si hay tiendas, pues devilvemos
             success(it)
 
         }, error = {
             // if not shops in cache --> Network request
             //Store Results in cache
-            populateCache(success, error)
+            populateCache(type, success, error)
         })
     }
 
-    private fun populateCache(success: (shops: List<ShopEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
+
+
+
+
+    private fun populateCache(type : Int ,success: (shops: List<ShopEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
 
         val jsonManager : GetJsonManager = GetJsonManagerVolleyImpl(weakContext.get()!!)
-        jsonManager.execute("http://madrid-shops.com/json_new/getShops.php",
+
+        //GENERATE THE URL
+        var urlWebService = TypeObjects.SHOPS_URL
+
+        if (type == TypeObjects.EVENTS){
+            urlWebService = TypeObjects.EVENTS_URL
+        }
+
+
+        jsonManager.execute(urlWebService,
                 success = object : SuccessCompletion<String>{
                     override fun successCompletion(a: String) {
 
@@ -40,7 +53,7 @@ class RepositoryImpl(context: Context) : Repository{
                         val responseEntity  = parser.parse<ShopRepsonseEntity>(a)
 
                         //persist in Cache
-                        cache.saveAllShops(responseEntity.result, success = {
+                        cache.saveAllShops(type,responseEntity.result, success = {
                             success(responseEntity.result) //All Ok returns List of Shops
                         }, error = {
                             error("Error al cachear")
@@ -59,9 +72,9 @@ class RepositoryImpl(context: Context) : Repository{
 
     }
 
-    override fun deleteAllShops(success: () -> Unit, error: (errorMessage: String) -> Unit) {
+    override fun deleteAllShops(type : Int , success: () -> Unit, error: (errorMessage: String) -> Unit) {
 
-        cache.deleteAllShops(success, error)
+        cache.deleteAllShops(type, success, error)
     }
 
 }

@@ -8,7 +8,7 @@ import com.joselbe.domain.model.Shop
 import com.joselbe.domain.model.Shops
 
 class GetAllShopsInterfactorFakeImplementation : GetAllShopsInteractor {
-    override fun execute(success: SuccessCompletion<Shops>, error: ErrorCompletion) {
+    override fun execute(type: Int, success: SuccessCompletion<Shops>, error: ErrorCompletion) {
         var allOK = true
 
         //conect to the repository

@@ -22,7 +22,6 @@ class GetJsonManagerVolleyImpl (context : Context): GetJsonManager{
 
         //create request (success, failure)
         val request = StringRequest(url, Response.Listener {
-            Log.d("Shop", it)
             success.successCompletion(it)  //llamamos a la clausura que nos pasen
         }, Response.ErrorListener{
             error.errorCompletion(it.localizedMessage) //lalmamos clausura de error

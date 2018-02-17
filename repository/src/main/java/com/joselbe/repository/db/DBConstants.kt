@@ -7,6 +7,7 @@ object DBConstants {
     // Table field constants
     val KEY_SHOP_DATABASE_ID = "_id"
     val KEY_SHOP_ID_JSON = "ID_JSON"
+    val KEY_SHOP_TYPE_DATA = "type"
 
     val KEY_SHOP_NAME = "NAME"
     val KEY_SHOP_IMAGE_URL = "IMAGE_URL"
@@ -22,12 +23,13 @@ object DBConstants {
     val KEY_SHOP_OPENING_HOURS_EN = "OPENING_HOURS_EN"
     val KEY_SHOP_OPENING_HOURS_ES = "OPENING_HOURS_ES"
 
-    val ALL_COLUMNS = arrayOf(KEY_SHOP_DATABASE_ID,KEY_SHOP_ID_JSON, KEY_SHOP_NAME, KEY_SHOP_IMAGE_URL, KEY_SHOP_LOGO_IMAGE_URL, KEY_SHOP_ADDRESS, KEY_SHOP_URL, KEY_SHOP_DESCRIPTION_ES, KEY_SHOP_DESCRIPTION_EN, KEY_SHOP_LATITUDE, KEY_SHOP_LONGITUDE, KEY_SHOP_OPENING_HOURS_ES, KEY_SHOP_OPENING_HOURS_EN)
+    val ALL_COLUMNS = arrayOf(KEY_SHOP_TYPE_DATA, KEY_SHOP_DATABASE_ID,KEY_SHOP_ID_JSON, KEY_SHOP_NAME, KEY_SHOP_IMAGE_URL, KEY_SHOP_LOGO_IMAGE_URL, KEY_SHOP_ADDRESS, KEY_SHOP_URL, KEY_SHOP_DESCRIPTION_ES, KEY_SHOP_DESCRIPTION_EN, KEY_SHOP_LATITUDE, KEY_SHOP_LONGITUDE, KEY_SHOP_OPENING_HOURS_ES, KEY_SHOP_OPENING_HOURS_EN)
 
     val SQL_SCRIPT_CREATE_SHOP_TABLE = (
             "create table " + TABLE_SHOP
                     + "( "
-                    + KEY_SHOP_DATABASE_ID + " integer primary key autoincrement, "
+                    + KEY_SHOP_DATABASE_ID + " integer primary key autoincrement, " //is pk
+                    + KEY_SHOP_TYPE_DATA + " text,"  //is pk
                     + KEY_SHOP_ID_JSON + " integer,"
                     + KEY_SHOP_NAME + " text not null,"
                     + KEY_SHOP_IMAGE_URL + " text, "
