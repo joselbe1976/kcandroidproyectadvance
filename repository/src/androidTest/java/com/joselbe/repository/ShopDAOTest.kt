@@ -32,11 +32,27 @@ class ShopDAOTest {
 
 
         //creo un modelo
-        val shop = ShopEntity(1,1,"my shop", "",1.0f,2.0f,"","","","")
-        val shopEntityDao = ShopDAO(dbhelper)
+        val shop = ShopEntity(1,1,"my shop", "","", "1.0","2.0","","","","", "")
+        val shopEntityDao = ShopDAO(TypeObjects.SHOPS ,dbhelper)
 
         //inserto
         val id = shopEntityDao.insert(shop)
         assertTrue( id > 0)
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun given_valid_clean_caches() {
+        //contexto
+        val appContext = InstrumentationRegistry.getTargetContext()
+        //creo conexion base de datos
+        val dbhelper = buildDBHelper(appContext,"mydb.sqlite",1)
+
+          val shopEntityDao = ShopDAO(TypeObjects.SHOPS ,dbhelper)
+
+        //inserto
+        val res = shopEntityDao.deleteAll()
+        assertEquals( res, true)
+    }
+
 }
