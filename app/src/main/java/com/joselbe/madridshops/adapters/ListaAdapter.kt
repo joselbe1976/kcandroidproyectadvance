@@ -11,7 +11,6 @@ import com.joselbe.domain.model.Shop
 import com.joselbe.domain.model.Shops
 import com.joselbe.madridshops.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_picasso.*
 
 class ListaAdapter(val context: Context, val shops: Shops) : BaseAdapter() {
 

@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/ImageCell1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/ImageCell1"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         tools:text="Titulo" />
 
@@ -30,7 +30,7 @@
         android:layout_below="@+id/TextCell1"
         android:layout_toEndOf="@+id/ImageCell1"
         android:textAlignment="viewStart"
-        android:textSize="14sp"
+        android:textSize="12sp"
         tools:text="Subtexto" />
 
 
