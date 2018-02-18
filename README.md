@@ -2,7 +2,7 @@
 ## Proyecto Módulo Android Avanzado
 ### Alumno: Jose Luis Bustos Esteban
 
-Caractersticas del desarrollo con Android con Kotlin:
+Características del desarrollo con Android y Kotlin:
 
     * Al entrar a la aplicación se puede acceder a Shops y Actividad siempre que haya conexion a internet. Se puede eliminar las caches de todo
     * Al entrar en Shops o Actividades, si no está cacheado, se cachea y se muestra un spinner  
