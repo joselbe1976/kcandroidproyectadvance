@@ -13,6 +13,7 @@ Caractersticas del desarrollo con Android con Kotlin:
         ** El DAO lo tiene en cuenta para añadir una columna mas a la tabla para diferenciar con una misma tabla los registros
         ** El DAO segun el parametro realiza el filtro por este campo a demas de los de clase.
         ** El modelo sigue siendo el mismo SHOPS para todo
+        ** El modelo Cache para la eliminacion de todas, no se ha tenido en cuenta el type, con el fin de borrar toda la tabla con una única llamada, aunque queda preparado para poder borrar unas u otras, porque llega el parametro.
     
    
 
