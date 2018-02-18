@@ -5,6 +5,9 @@
 Caractersticas del desarrollo con Android con Kotlin:
 
     * Se han usando las mismas vistas para tiendas y Actividades
+    * Se han usando las mismas vistas para tiendas y Actividades
+    * Se han usando las mismas vistas para tiendas y Actividades    
+    * Se han usando las mismas vistas para tiendas y Actividades
     * Se ha creado en repositorio y dominio un argumento nuevo "type" donde se puede pasar TypeObject.SHOPS o TypeObject.EVENTS
         ** Segun ese parametro se lanza la url de shops o actividades
         ** El DAO lo tiene en cuenta para añadir una columna mas a la tabla para diferenciar con una misma tabla los registros
