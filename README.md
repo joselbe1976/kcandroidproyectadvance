@@ -7,6 +7,7 @@ Caractersticas del desarrollo con Android con Kotlin:
     * Al entrar a la aplicación se puede acceder a Shops y Actividad siempre que haya conexion a internet. Se puede eliminar las caches de todo
     * Al entrar en Shops o Actividades, si no está cacheado, se cachea y se muestra un spinner  
     * Se han usando las mismas vistas para tiendas y Actividades
+    * Uso de la libreria ANKO de Kotlin
     * Se ha creado en repositorio y dominio un argumento nuevo "type" donde se puede pasar TypeObject.SHOPS o TypeObject.EVENTS
         ** Segun ese parametro se lanza la url de shops o actividades
         ** El DAO lo tiene en cuenta para añadir una columna mas a la tabla para diferenciar con una misma tabla los registros
